@@ -1,0 +1,2 @@
+1|Administrator|admin|admin@cineflex.local|admin123|ADMIN
+2|Demo User|user|user@cineflex.local|user123|USER

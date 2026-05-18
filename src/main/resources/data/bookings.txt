@@ -1,0 +1,2 @@
+BK001|REQ001|Demo Customer|demo@cineflex.local|Red Horizon|2026-05-15|7:30 PM|Hall 1|A1,A2|3000.00|2026-05-15T18:00|CONFIRMED
+
