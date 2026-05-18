@@ -188,8 +188,20 @@ public class BookingService {
             return null;
         }
         try {
-            return new BookingRequest(parts[0], parts[1], parts[2], parts[3], parts[4], parseSeats(parts[5]),
-                    Double.parseDouble(parts[6]), BookingStatus.valueOf(parts[7]), parts[8], "", "-");
+            BookingRequest request = new BookingRequest(
+                    parts[0], // requestId
+                    parts[1], // customerName
+                    parts[2], // customerEmail
+                    parts[3], // movieId
+                    parts[4], // showtimeId
+                    parseSeats(parts[5]), // selectedSeats
+                    Double.parseDouble(parts[6]), // totalPrice
+                    BookingStatus.valueOf(parts[7]), // status
+                    parts[8], // createdAt
+                    "", // processedAt
+                    "-"  // rejectionReason
+            );
+            return request;
         } catch (IllegalArgumentException ex) {
             return null;
         }
@@ -201,8 +213,20 @@ public class BookingService {
             return null;
         }
         try {
-            return new BookingRequest(parts[0], parts[1], parts[2], parts[3], parts[4], parseSeats(parts[5]),
-                    Double.parseDouble(parts[6]), BookingStatus.valueOf(parts[7]), parts[8], parts[9], parts[10]);
+            BookingRequest request = new BookingRequest(
+                    parts[0], // requestId
+                    parts[1], // customerName
+                    parts[2], // customerEmail
+                    parts[3], // movieId
+                    parts[4], // showtimeId
+                    parseSeats(parts[5]), // selectedSeats
+                    Double.parseDouble(parts[6]), // totalPrice
+                    BookingStatus.valueOf(parts[7]), // status
+                    parts[8], // createdAt
+                    parts[9], // processedAt
+                    parts[10]  // rejectionReason
+            );
+            return request;
         } catch (IllegalArgumentException ex) {
             return null;
         }

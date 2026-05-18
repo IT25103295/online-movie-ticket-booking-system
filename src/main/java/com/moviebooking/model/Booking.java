@@ -41,24 +41,6 @@ public class Booking {
         this.status = status == null ? BookingStatus.CONFIRMED : status;
     }
 
-    // Constructor from BookingRequest (from first file)
-    public Booking(String bookingId, BookingRequest request) {
-        this.bookingId = bookingId;
-        this.requestId = request.getRequestId();
-        this.customerName = request.getCustomerName();
-        this.customerEmail = request.getCustomerEmail();
-        this.movieId = request.getMovieId();
-        this.movieTitle = request.getMovieTitle();
-        this.showtimeId = request.getShowtimeId();
-        this.showtimeDate = request.getShowtimeDate();
-        this.showtimeTime = request.getShowtimeTime();
-        this.cinemaHall = request.getCinemaHall();
-        this.seats = new ArrayList<>(request.getSelectedSeats());
-        this.totalPrice = request.getTotalPrice();
-        this.confirmedAt = request.getProcessedAt();
-        this.status = request.getStatus();
-    }
-
     // Factory method to create a copy with updated status
     public Booking withStatus(BookingStatus newStatus) {
         return new Booking(bookingId, requestId, customerName, customerEmail, movieId, movieTitle,

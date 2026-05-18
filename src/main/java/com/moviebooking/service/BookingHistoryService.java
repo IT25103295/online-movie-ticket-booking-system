@@ -89,11 +89,12 @@ public class BookingHistoryService {
     }
 
     public Booking createBookingFromConfirmedRequest(String requestId, String customerName, String customerEmail,
-                                                     String movieTitle, String showtimeDate, String showtimeTime,
+                                                     String movieId, String movieTitle, String showtimeId,
+                                                     String showtimeDate, String showtimeTime,
                                                      String cinemaHall, List<String> seats, double totalPrice) {
         String bookingId = "BK-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        return new Booking(bookingId, requestId, customerName, customerEmail, movieTitle, showtimeDate,
-                showtimeTime, cinemaHall, seats, totalPrice, LocalDateTime.now().toString(), BookingStatus.CONFIRMED);
+        return new Booking(bookingId, requestId, customerName, customerEmail, movieId, movieTitle, showtimeId,
+                showtimeDate, showtimeTime, cinemaHall, seats, totalPrice, LocalDateTime.now().toString(), BookingStatus.CONFIRMED);
     }
 
     private boolean updateBookingStatus(String bookingId, BookingStatus status) throws IOException {
@@ -158,12 +159,26 @@ public class BookingHistoryService {
 
     private Booking parseBooking(String line) {
         String[] parts = line.split("\\|", -1);
-        if (parts.length != 12) {
+        if (parts.length != 14) { // Updated to expect 14 fields
             return null;
         }
         try {
-            return new Booking(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7],
-                    parseSeats(parts[8]), Double.parseDouble(parts[9]), parts[10], BookingStatus.valueOf(parts[11]));
+            return new Booking(
+                    parts[0],  // bookingId
+                    parts[1],  // requestId
+                    parts[2],  // customerName
+                    parts[3],  // customerEmail
+                    parts[4],  // movieId
+                    parts[5],  // movieTitle
+                    parts[6],  // showtimeId
+                    parts[7],  // showtimeDate
+                    parts[8],  // showtimeTime
+                    parts[9],  // cinemaHall
+                    parseSeats(parts[10]), // seats
+                    Double.parseDouble(parts[11]), // totalPrice
+                    parts[12], // confirmedAt
+                    BookingStatus.valueOf(parts[13]) // status
+            );
         } catch (IllegalArgumentException ex) {
             return null;
         }
@@ -175,7 +190,9 @@ public class BookingHistoryService {
                 clean(booking.getRequestId()),
                 clean(booking.getCustomerName()),
                 clean(booking.getCustomerEmail()),
+                clean(booking.getMovieId()),
                 clean(booking.getMovieTitle()),
+                clean(booking.getShowtimeId()),
                 clean(booking.getShowtimeDate()),
                 clean(booking.getShowtimeTime()),
                 clean(booking.getCinemaHall()),
@@ -202,7 +219,8 @@ public class BookingHistoryService {
     private void seedDemoBooking(File bookingsFile) throws IOException {
         ensureParentDirectory(bookingsFile);
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(bookingsFile)))) {
-            writer.println("BK001|REQ001|Demo Customer|demo@cineflex.local|Red Horizon|2026-05-15|7:30 PM|Hall 1|A1,A2|3000.00|2026-05-15T18:00|CONFIRMED");
+            // Updated demo booking with 14 fields (includes movieId and showtimeId)
+            writer.println("BK001|REQ001|Demo Customer|demo@cineflex.local|MOV001|Red Horizon|ST001|2026-05-15|7:30 PM|Hall 1|A1,A2|3000.00|2026-05-15T18:00|CONFIRMED");
         }
     }
 
