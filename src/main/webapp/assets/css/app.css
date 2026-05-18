@@ -1,5 +1,246 @@
 body {
     font-family: Arial, sans-serif;
-    background: #111;
+    background: #080808;
     color: white;
+    min-height: 100vh;
+}
+
+a {
+    color: #ff4d4d;
+}
+
+a:hover {
+    color: #ff7777;
+}
+
+.cine-navbar {
+    background: #111;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.cine-navbar .navbar-brand {
+    color: #e50914;
+    font-weight: 700;
+}
+
+.cine-navbar .nav-link {
+    color: #f5f5f5;
+}
+
+.cine-navbar .navbar-brand:hover,
+.cine-navbar .nav-link:hover {
+    color: #ff4d4d;
+}
+
+.navbar-toggler {
+    border-color: #444;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+.btn-danger {
+    background: #e50914;
+    border-color: #e50914;
+}
+
+.btn-danger:hover {
+    background: #b80710;
+    border-color: #b80710;
+}
+
+.movie-hero {
+    background:
+            linear-gradient(90deg, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.5)),
+            url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80");
+    background-position: center;
+    background-size: cover;
+    border-bottom: 1px solid #2b2b2b;
+    min-height: 430px;
+    padding: 110px 0 80px;
+}
+
+.movie-hero-content {
+    max-width: 670px;
+}
+
+.hero-kicker {
+    color: #e50914;
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.movie-hero h1,
+.details-copy h1 {
+    color: #fff;
+    font-size: clamp(2.2rem, 6vw, 4.6rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 18px;
+}
+
+.movie-hero p,
+.details-copy p,
+.showtime-placeholder p {
+    color: #d8d8d8;
+    font-size: 1.05rem;
+}
+
+.movie-section {
+    padding: 56px 12px 72px;
+}
+
+.section-toolbar {
+    align-items: end;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.section-toolbar h2,
+.showtime-placeholder h2 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.sort-form {
+    min-width: 210px;
+}
+
+.sort-form .form-label {
+    color: #d8d8d8;
+    font-size: 0.9rem;
+}
+
+.sort-form .form-select {
+    background-color: #151515;
+    border-color: #333;
+    color: #fff;
+}
+
+.movie-card {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 8px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.movie-poster {
+    aspect-ratio: 2 / 3;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+}
+
+.movie-card-body {
+    padding: 18px;
+}
+
+.movie-genre {
+    color: #e50914;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.movie-card h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 8px 0 14px;
+}
+
+.movie-meta {
+    color: #d8d8d8;
+    display: flex;
+    font-size: 0.92rem;
+    justify-content: space-between;
+}
+
+.movie-price {
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-top: 12px;
+}
+
+.movie-actions {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 16px;
+}
+
+.details-hero {
+    background-position: center;
+    background-size: cover;
+    border-bottom: 1px solid #2b2b2b;
+    padding: 72px 0;
+}
+
+.details-layout {
+    align-items: center;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: minmax(190px, 280px) 1fr;
+}
+
+.details-poster {
+    border: 1px solid #444;
+    border-radius: 8px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
+    width: 100%;
+}
+
+.details-copy {
+    max-width: 760px;
+}
+
+.details-stats {
+    color: #f5f5f5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 22px 0;
+}
+
+.details-stats span {
+    background: rgba(20, 20, 20, 0.82);
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.showtime-placeholder {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 8px;
+    margin-bottom: 72px;
+    margin-top: 42px;
+    padding: 28px;
+}
+
+@media (max-width: 767px) {
+    .section-toolbar,
+    .details-layout {
+        display: block;
+    }
+
+    .sort-form {
+        margin-top: 18px;
+    }
+
+    .details-poster {
+        margin-bottom: 24px;
+        max-width: 230px;
+    }
 }
