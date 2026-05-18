@@ -31,6 +31,7 @@
                 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/my-bookings">My Bookings</a></li>
                 <% if (UserRole.ADMIN.equals(currentUser.getRole())) { %>
                 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/queue">Queue</a></li>
                 <% } %>
                 <li class="nav-item"><span class="nav-user">Hi, <%= currentUser.getName() %></span></li>
                 <li class="nav-item"><a class="btn btn-outline-light btn-sm ms-lg-2" href="${pageContext.request.contextPath}/logout">Logout</a></li>

@@ -301,7 +301,7 @@ a:hover {
     padding: 28px;
 }
 
-/* Booking Page */
+/* Booking Page - Seat Selection */
 .booking-page {
     background: #080808;
     min-height: calc(100vh - 58px);
@@ -533,6 +533,126 @@ a:hover {
     font-size: 1.35rem;
 }
 
+/* Checkout, Result & Admin Queue Pages */
+.booking-page {
+    min-height: calc(100vh - 58px);
+    padding: 48px 0 72px;
+}
+
+.checkout-wrap,
+.result-wrap,
+.admin-queue-wrap {
+    max-width: 980px;
+}
+
+.checkout-card,
+.result-card,
+.queue-panel,
+.empty-panel {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    padding: 28px;
+}
+
+.checkout-card h1,
+.result-card h1,
+.admin-queue-wrap h1 {
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 22px;
+}
+
+.summary-grid,
+.queue-stats {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 22px 0;
+}
+
+.summary-grid.compact {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.summary-item {
+    background: #0d0d0d;
+    border: 1px solid #303030;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.summary-item span {
+    color: #aaa;
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+.summary-item strong {
+    color: #fff;
+}
+
+.summary-item.total {
+    border-color: #e50914;
+}
+
+.checkout-form .form-label {
+    color: #f1f1f1;
+}
+
+.checkout-form .form-control {
+    background: #0d0d0d;
+    border: 1px solid #3a3a3a;
+    color: #fff;
+}
+
+.checkout-form .form-control:focus {
+    background: #0d0d0d;
+    border-color: #e50914;
+    box-shadow: 0 0 0 0.2rem rgba(229, 9, 20, 0.18);
+    color: #fff;
+}
+
+.checkout-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.empty-panel h2,
+.queue-panel h2 {
+    color: #fff;
+    font-size: 1.35rem;
+}
+
+.empty-panel p,
+.result-card p {
+    color: #d8d8d8;
+}
+
+.result-card.confirmed {
+    border-color: #198754;
+}
+
+.result-card.rejected {
+    border-color: #e50914;
+}
+
+.queue-panel {
+    margin-top: 24px;
+}
+
+.table-dark {
+    --bs-table-bg: #111;
+    --bs-table-border-color: #333;
+}
+
 /* Responsive */
 @media (max-width: 767px) {
     .section-toolbar,
@@ -565,5 +685,18 @@ a:hover {
     .seat-option span {
         font-size: 0.75rem;
         height: 32px;
+    }
+
+    .summary-grid,
+    .summary-grid.compact,
+    .queue-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-card,
+    .result-card,
+    .queue-panel,
+    .empty-panel {
+        padding: 20px;
     }
 }
