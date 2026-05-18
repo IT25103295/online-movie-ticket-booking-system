@@ -25,15 +25,15 @@
             <ul class="navbar-nav ms-auto align-items-lg-center">
                 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/movies">Movies</a></li>
                 <% if (currentUser == null) { %>
-                    <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a></li>
-                    <li class="nav-item"><a class="btn btn-danger btn-sm ms-lg-2" href="${pageContext.request.contextPath}/signup">Sign Up</a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a></li>
+                <li class="nav-item"><a class="btn btn-danger btn-sm ms-lg-2" href="${pageContext.request.contextPath}/signup">Sign Up</a></li>
                 <% } else { %>
-                    <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/my-bookings">My Bookings</a></li>
-                    <% if (UserRole.ADMIN.equals(currentUser.getRole())) { %>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin">Admin</a></li>
-                    <% } %>
-                    <li class="nav-item"><span class="nav-user">Hi, <%= currentUser.getName() %></span></li>
-                    <li class="nav-item"><a class="btn btn-outline-light btn-sm ms-lg-2" href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/my-bookings">My Bookings</a></li>
+                <% if (UserRole.ADMIN.equals(currentUser.getRole())) { %>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin">Admin</a></li>
+                <% } %>
+                <li class="nav-item"><span class="nav-user">Hi, <%= currentUser.getName() %></span></li>
+                <li class="nav-item"><a class="btn btn-outline-light btn-sm ms-lg-2" href="${pageContext.request.contextPath}/logout">Logout</a></li>
                 <% } %>
             </ul>
         </div>
