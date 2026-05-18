@@ -1,5 +1,220 @@
 body {
     font-family: Arial, sans-serif;
-    background: #111;
+    background: #080808;
     color: white;
+    min-height: 100vh;
+}
+
+a {
+    color: #ff4d4d;
+}
+
+a:hover {
+    color: #ff7777;
+}
+
+.cine-navbar {
+    background: #111;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.cine-navbar .navbar-brand {
+    color: #e50914;
+    font-weight: 700;
+}
+
+.cine-navbar .nav-link {
+    color: #f5f5f5;
+}
+
+.cine-navbar .navbar-brand:hover,
+.cine-navbar .nav-link:hover {
+    color: #ff4d4d;
+}
+
+.navbar-toggler {
+    border-color: #444;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+.btn-danger {
+    background: #e50914;
+    border-color: #e50914;
+}
+
+.btn-danger:hover {
+    background: #b80710;
+    border-color: #b80710;
+}
+
+.booking-history-page,
+.ticket-page {
+    min-height: calc(100vh - 58px);
+    padding: 48px 0 72px;
+}
+
+.history-wrap,
+.ticket-wrap {
+    max-width: 980px;
+}
+
+.hero-kicker {
+    color: #e50914;
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.history-wrap h1,
+.ticket-card h1 {
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 16px;
+}
+
+.muted-copy,
+.booking-card p,
+.empty-panel p {
+    color: #d8d8d8;
+}
+
+.booking-list {
+    display: grid;
+    gap: 18px;
+    margin-top: 28px;
+}
+
+.booking-card,
+.empty-panel,
+.ticket-card {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    padding: 24px;
+}
+
+.booking-card {
+    align-items: center;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1.4fr 1.4fr auto;
+}
+
+.booking-card h2 {
+    color: #fff;
+    font-size: 1.4rem;
+    margin: 8px 0;
+}
+
+.booking-status,
+.ticket-status {
+    background: rgba(229, 9, 20, 0.16);
+    border: 1px solid #e50914;
+    border-radius: 999px;
+    color: #fff;
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 10px;
+}
+
+.booking-meta {
+    display: grid;
+    gap: 8px;
+}
+
+.booking-meta span {
+    color: #d8d8d8;
+}
+
+.booking-meta strong {
+    color: #fff;
+    margin-right: 6px;
+}
+
+.ticket-card {
+    border-top: 4px solid #e50914;
+}
+
+.ticket-top {
+    align-items: start;
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+}
+
+.ticket-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 28px 0;
+}
+
+.ticket-grid div {
+    background: #0d0d0d;
+    border: 1px solid #303030;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.ticket-grid span {
+    color: #aaa;
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+.ticket-grid strong {
+    color: #fff;
+}
+
+.ticket-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+@media (max-width: 767px) {
+    .booking-card,
+    .ticket-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ticket-top {
+        display: block;
+    }
+}
+
+@media print {
+    .cine-navbar,
+    .ticket-actions,
+    script {
+        display: none !important;
+    }
+
+    body,
+    .ticket-page {
+        background: #fff;
+        color: #000;
+    }
+
+    .ticket-card {
+        border: 2px solid #000;
+        box-shadow: none;
+        color: #000;
+    }
+
+    .ticket-card h1,
+    .ticket-grid strong {
+        color: #000;
+    }
 }
