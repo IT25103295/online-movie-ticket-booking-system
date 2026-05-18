@@ -48,6 +48,9 @@ public class CheckoutServlet extends HttpServlet {
             return;
         }
 
+        // Store customer email in session for MyBookingsServlet
+        session.setAttribute("customerEmail", customerEmail);
+
         String movieId = session == null ? null : (String) session.getAttribute("selectedMovieId");
         BookingRequest bookingRequest = new BookingRequest("", customerName, customerEmail, defaultText(movieId, "Movie N/A"),
                 showtimeId, selectedSeats, selectedSeats.size() * SEAT_PRICE, BookingStatus.PENDING,

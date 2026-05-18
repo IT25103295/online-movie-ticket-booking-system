@@ -1,5 +1,7 @@
 package com.moviebooking.servlet;
 
+import com.moviebooking.model.User;
+import com.moviebooking.service.AuthService;
 import com.moviebooking.service.BookingHistoryService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,10 +29,19 @@ public class MyBookingsServlet extends HttpServlet {
             return BookingHistoryService.DEMO_CUSTOMER_EMAIL;
         }
 
-        Object customerEmail = session.getAttribute("customerEmail");
-        if (customerEmail == null || customerEmail.toString().trim().isEmpty()) {
-            return BookingHistoryService.DEMO_CUSTOMER_EMAIL;
+        // First try to get email from logged-in user
+        User currentUser = (User) session.getAttribute(AuthService.CURRENT_USER_SESSION_KEY);
+        if (currentUser != null && currentUser.getEmail() != null && !currentUser.getEmail().trim().isEmpty()) {
+            return currentUser.getEmail();
         }
-        return customerEmail.toString();
+
+        // Fall back to session-stored customer email
+        Object customerEmail = session.getAttribute("customerEmail");
+        if (customerEmail != null && !customerEmail.toString().trim().isEmpty()) {
+            return customerEmail.toString();
+        }
+
+        // Last resort - use demo email
+        return BookingHistoryService.DEMO_CUSTOMER_EMAIL;
     }
 }

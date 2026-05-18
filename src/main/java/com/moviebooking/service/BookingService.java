@@ -1,7 +1,6 @@
 package com.moviebooking.service;
 
-import com.moviebooking.model.BookingRequest;
-import com.moviebooking.model.BookingStatus;
+import com.moviebooking.model.*;
 import jakarta.servlet.ServletContext;
 
 import java.io.BufferedReader;
@@ -57,8 +56,61 @@ public class BookingService {
                 return null;
             }
 
-            if (validateSeats(request.getShowtimeId(), request.getSelectedSeats()) && bookSeatsForShowtime(request)) {
+            ShowtimeService showtimeService = new ShowtimeService(servletContext);
+            MovieService movieService = new MovieService(servletContext);
+            BookingHistoryService historyService = new BookingHistoryService(servletContext);
+
+            boolean seatsBooked = false;
+
+            // Try to book the seats
+            if (validateSeats(request.getShowtimeId(), request.getSelectedSeats())) {
+                seatsBooked = bookSeatsForShowtime(request);
+            }
+
+            if (seatsBooked) {
                 request.confirm();
+
+                // Get additional details for the booking
+                String movieTitle = "Unknown Movie";
+                String showtimeDate = "";
+                String showtimeTime = "";
+                String cinemaHall = "";
+
+                try {
+                    Showtime showtime = showtimeService.getShowtimeById(request.getShowtimeId());
+                    if (showtime != null) {
+                        showtimeDate = showtime.getDate();
+                        showtimeTime = showtime.getTime();
+                        cinemaHall = showtime.getCinemaHall();
+                    }
+
+                    Movie movie = movieService.getMovieById(request.getMovieId());
+                    if (movie != null) {
+                        movieTitle = movie.getTitle();
+                    }
+                } catch (Exception e) {
+                    // Use default values if lookup fails
+                    e.printStackTrace();
+                }
+
+                // Save to booking history
+                Booking booking = historyService.createBookingFromConfirmedRequest(
+                        request.getRequestId(),
+                        request.getCustomerName(),
+                        request.getCustomerEmail(),
+                        request.getMovieId(),
+                        movieTitle,
+                        request.getShowtimeId(),
+                        showtimeDate,
+                        showtimeTime,
+                        cinemaHall,
+                        request.getSelectedSeats(),
+                        request.getTotalPrice()
+                );
+
+                historyService.saveConfirmedBooking(request.getCustomerEmail(), booking);
+                System.out.println("Booking saved: " + booking.getBookingId() + " for email: " + request.getCustomerEmail());
+
             } else {
                 request.reject("Seats are unavailable or missing.");
             }
@@ -123,8 +175,12 @@ public class BookingService {
     }
 
     private boolean bookSeatsForShowtime(BookingRequest request) {
-        // Placeholder for Component 03 integration: call ShowtimeService.bookSeats(showtimeId, selectedSeats) here when available.
-        return validateSeats(request.getShowtimeId(), request.getSelectedSeats());
+        try {
+            ShowtimeService showtimeService = new ShowtimeService(servletContext);
+            return showtimeService.bookSeats(request.getShowtimeId(), request.getSelectedSeats());
+        } catch (IOException e) {
+            return false;
+        }
     }
 
     private void loadState() throws IOException {

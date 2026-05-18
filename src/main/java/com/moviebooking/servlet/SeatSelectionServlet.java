@@ -36,8 +36,14 @@ public class SeatSelectionServlet extends HttpServlet {
             return;
         }
 
+        // Store movieId in session as well
+        Showtime showtime = showtimeService.getShowtimeById(showtimeId);
+
         request.getSession(true).setAttribute("selectedShowtimeId", showtimeId);
         request.getSession(true).setAttribute("selectedSeats", selectedSeats);
+        if (showtime != null) {
+            request.getSession(true).setAttribute("selectedMovieId", showtime.getMovieId());
+        }
         response.sendRedirect(request.getContextPath() + "/checkout");
     }
 
