@@ -648,11 +648,6 @@ a:hover {
     margin-top: 24px;
 }
 
-.table-dark {
-    --bs-table-bg: #111;
-    --bs-table-border-color: #333;
-}
-
 /* Booking History & Ticket Pages */
 .booking-history-page,
 .ticket-page {
@@ -778,7 +773,137 @@ a:hover {
     justify-content: flex-end;
 }
 
+/* Admin Page */
+.admin-page {
+    min-height: calc(100vh - 58px);
+    padding: 44px 0 72px;
+}
+
+.admin-shell {
+    max-width: 1180px;
+}
+
+.admin-heading h1 {
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1;
+}
+
+.admin-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 24px 0;
+}
+
+.admin-tabs a {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #f5f5f5;
+    padding: 10px 14px;
+    text-decoration: none;
+}
+
+.admin-tabs a.active,
+.admin-tabs a:hover {
+    background: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.stat-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 24px;
+}
+
+.stat-card,
+.admin-panel {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+}
+
+.stat-card {
+    padding: 20px;
+}
+
+.stat-card span {
+    color: #aaa;
+    display: block;
+    font-size: 0.9rem;
+}
+
+.stat-card strong {
+    color: #fff;
+    display: block;
+    font-size: 2.1rem;
+    margin-top: 8px;
+}
+
+.admin-panel {
+    margin-bottom: 24px;
+    padding: 22px;
+}
+
+.admin-panel h2 {
+    color: #fff;
+    font-size: 1.35rem;
+    margin-bottom: 16px;
+}
+
+.admin-form {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.admin-form textarea {
+    grid-column: 1 / -1;
+    min-height: 80px;
+}
+
+.admin-form button {
+    justify-self: start;
+}
+
+.form-control,
+.form-select {
+    background-color: #0d0d0d;
+    border-color: #3a3a3a;
+    color: #fff;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #0d0d0d;
+    border-color: #e50914;
+    box-shadow: 0 0 0 0.2rem rgba(229, 9, 20, 0.18);
+    color: #fff;
+}
+
+.table-dark {
+    --bs-table-bg: #111;
+    --bs-table-border-color: #333;
+}
+
+.table-actions {
+    display: flex;
+    gap: 8px;
+}
+
 /* Responsive */
+@media (max-width: 900px) {
+    .stat-grid,
+    .admin-form {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 @media (max-width: 767px) {
     .section-toolbar,
     .details-layout {
@@ -832,6 +957,13 @@ a:hover {
 
     .ticket-top {
         display: block;
+    }
+}
+
+@media (max-width: 640px) {
+    .stat-grid,
+    .admin-form {
+        grid-template-columns: 1fr;
     }
 }
 

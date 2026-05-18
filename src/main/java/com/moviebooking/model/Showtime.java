@@ -11,6 +11,15 @@ public class Showtime {
     public Showtime() {
     }
 
+    public Showtime(String id, String movieId, String cinemaHall, String date, String time) {
+        this.id = id;
+        this.movieId = movieId;
+        this.cinemaHall = cinemaHall;
+        this.date = date;
+        this.time = time;
+        this.seatMap = null; // Will be set separately if needed
+    }
+
     public Showtime(String id, String movieId, String cinemaHall, String date, String time, SeatMap seatMap) {
         this.id = id;
         this.movieId = movieId;
