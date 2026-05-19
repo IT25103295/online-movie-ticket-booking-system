@@ -55,34 +55,26 @@ public class CheckoutServlet extends HttpServlet {
         String movieId = session == null ? null : (String) session.getAttribute("selectedMovieId");
         double totalAmount = selectedSeats.size() * SEAT_PRICE;
 
-        // Check if payment integration is enabled (has payment servlet)
-        boolean usePaymentGateway = request.getParameter("usePayment") != null ||
-                getServletContext().getInitParameter("enablePayment") != null;
+        // ALWAYS use payment gateway for now (or make it configurable)
+        // Store checkout data for payment page
+        session.setAttribute("checkoutMovieLabel", getMovieTitleFromId(movieId, session));
+        session.setAttribute("checkoutCustomerName", customerName.trim());
+        session.setAttribute("checkoutCustomerEmail", customerEmail.trim());
+        session.setAttribute("checkoutTotalAmount", totalAmount);
 
-        if (usePaymentGateway) {
-            // Route to payment gateway (second file workflow)
-            session.setAttribute("checkoutMovieLabel", defaultText(movieId, "Selected Movie"));
-            session.setAttribute("checkoutCustomerName", customerName.trim());
-            session.setAttribute("checkoutCustomerEmail", customerEmail.trim());
-            session.setAttribute("checkoutTotalAmount", totalAmount);
-            response.sendRedirect(request.getContextPath() + "/payment");
-        } else {
-            // Direct booking processing (first file workflow)
-            BookingRequest bookingRequest = new BookingRequest("", customerName, customerEmail,
-                    defaultText(movieId, "Movie N/A"), showtimeId, selectedSeats, totalAmount,
-                    BookingStatus.PENDING, LocalDateTime.now().toString(), "", "-");
+        // Redirect to payment page
+        response.sendRedirect(request.getContextPath() + "/payment");
+    }
 
-            BookingService bookingService = new BookingService(getServletContext());
-            BookingRequest queuedRequest = bookingService.enqueueBooking(bookingRequest);
-            BookingRequest processedRequest = bookingService.processNext();
-            String resultRequestId = processedRequest == null ? queuedRequest.getRequestId() : processedRequest.getRequestId();
-
-            // Clean up session
-            session.removeAttribute("selectedShowtimeId");
-            session.removeAttribute("selectedSeats");
-
-            response.sendRedirect(request.getContextPath() + "/booking-result?requestId=" + resultRequestId);
+    private String getMovieTitleFromId(String movieId, HttpSession session) {
+        // Try to get movie title from session or service
+        if (movieId == null) {
+            return "Selected Movie";
         }
+
+        // You can add logic here to fetch movie title from MovieService
+        // For now, return a default
+        return "Movie " + movieId;
     }
 
     private void prepareCheckoutSummary(HttpServletRequest request) {
