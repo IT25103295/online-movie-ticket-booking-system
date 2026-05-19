@@ -1,9 +1,11 @@
 <%@ page import="com.moviebooking.model.User" %>
 <%@ page import="com.moviebooking.model.UserRole" %>
 <%@ page import="com.moviebooking.service.AuthService" %>
+
 <%
     User currentUser = (User) session.getAttribute(AuthService.CURRENT_USER_SESSION_KEY);
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,30 +15,71 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/app.css">
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg cine-navbar">
     <div class="container">
+        <!-- Brand -->
         <a class="navbar-brand" href="${pageContext.request.contextPath}/movies">CineFlex</a>
+
+        <!-- Mobile Toggle -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#cineNavbar"
                 aria-controls="cineNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- Navbar Content -->
         <div class="collapse navbar-collapse" id="cineNavbar">
             <ul class="navbar-nav ms-auto align-items-lg-center">
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/movies">Movies</a></li>
+
+                <!-- Public Link -->
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/movies">Movies</a>
+                </li>
+
                 <% if (currentUser == null) { %>
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a></li>
-                <li class="nav-item"><a class="btn btn-danger btn-sm ms-lg-2" href="${pageContext.request.contextPath}/signup">Sign Up</a></li>
+
+                <!-- Guest Navigation -->
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn btn-danger btn-sm ms-lg-2" href="${pageContext.request.contextPath}/signup">Sign Up</a>
+                </li>
+
                 <% } else { %>
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/my-bookings">My Bookings</a></li>
+
+                <!-- Logged User Navigation -->
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/my-bookings">My Bookings</a>
+                </li>
+
+                <!-- Admin Only -->
                 <% if (UserRole.ADMIN.equals(currentUser.getRole())) { %>
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin">Admin</a></li>
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/queue">Queue</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/admin">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/queue">Queue</a>
+                </li>
                 <% } %>
-                <li class="nav-item"><span class="nav-user">Hi, <%= currentUser.getName() %></span></li>
-                <li class="nav-item"><a class="btn btn-outline-light btn-sm ms-lg-2" href="${pageContext.request.contextPath}/logout">Logout</a></li>
+
+                <!-- Username -->
+                <li class="nav-item">
+                    <span class="nav-user">Hi, <%= currentUser.getName() %></span>
+                </li>
+
+                <!-- Logout -->
+                <li class="nav-item">
+                    <a class="btn btn-outline-light btn-sm ms-lg-2" href="${pageContext.request.contextPath}/logout">Logout</a>
+                </li>
+
                 <% } %>
+
             </ul>
         </div>
     </div>
 </nav>
+
+</body>
+</html>

@@ -16,6 +16,7 @@ import java.io.IOException;
         "/showtimes",
         "/seats",
         "/checkout",
+        "/payment",
         "/booking-result",
         "/my-bookings",
         "/ticket",

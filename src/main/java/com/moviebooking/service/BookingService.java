@@ -1,6 +1,10 @@
 package com.moviebooking.service;
 
-import com.moviebooking.model.*;
+import com.moviebooking.model.Booking;
+import com.moviebooking.model.BookingRequest;
+import com.moviebooking.model.BookingStatus;
+import com.moviebooking.model.Movie;
+import com.moviebooking.model.Showtime;
 import jakarta.servlet.ServletContext;
 
 import java.io.BufferedReader;

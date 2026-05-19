@@ -48,22 +48,41 @@ public class CheckoutServlet extends HttpServlet {
             return;
         }
 
-        // Store customer email in session for MyBookingsServlet
-        session.setAttribute("customerEmail", customerEmail);
+        // Store customer information in session
+        session.setAttribute("customerEmail", customerEmail.trim());
+        session.setAttribute("customerName", customerName.trim());
 
         String movieId = session == null ? null : (String) session.getAttribute("selectedMovieId");
-        BookingRequest bookingRequest = new BookingRequest("", customerName, customerEmail, defaultText(movieId, "Movie N/A"),
-                showtimeId, selectedSeats, selectedSeats.size() * SEAT_PRICE, BookingStatus.PENDING,
-                LocalDateTime.now().toString(), "", "-");
+        double totalAmount = selectedSeats.size() * SEAT_PRICE;
 
-        BookingService bookingService = new BookingService(getServletContext());
-        BookingRequest queuedRequest = bookingService.enqueueBooking(bookingRequest);
-        BookingRequest processedRequest = bookingService.processNext();
-        String resultRequestId = processedRequest == null ? queuedRequest.getRequestId() : processedRequest.getRequestId();
+        // Check if payment integration is enabled (has payment servlet)
+        boolean usePaymentGateway = request.getParameter("usePayment") != null ||
+                getServletContext().getInitParameter("enablePayment") != null;
 
-        session.removeAttribute("selectedShowtimeId");
-        session.removeAttribute("selectedSeats");
-        response.sendRedirect(request.getContextPath() + "/booking-result?requestId=" + resultRequestId);
+        if (usePaymentGateway) {
+            // Route to payment gateway (second file workflow)
+            session.setAttribute("checkoutMovieLabel", defaultText(movieId, "Selected Movie"));
+            session.setAttribute("checkoutCustomerName", customerName.trim());
+            session.setAttribute("checkoutCustomerEmail", customerEmail.trim());
+            session.setAttribute("checkoutTotalAmount", totalAmount);
+            response.sendRedirect(request.getContextPath() + "/payment");
+        } else {
+            // Direct booking processing (first file workflow)
+            BookingRequest bookingRequest = new BookingRequest("", customerName, customerEmail,
+                    defaultText(movieId, "Movie N/A"), showtimeId, selectedSeats, totalAmount,
+                    BookingStatus.PENDING, LocalDateTime.now().toString(), "", "-");
+
+            BookingService bookingService = new BookingService(getServletContext());
+            BookingRequest queuedRequest = bookingService.enqueueBooking(bookingRequest);
+            BookingRequest processedRequest = bookingService.processNext();
+            String resultRequestId = processedRequest == null ? queuedRequest.getRequestId() : processedRequest.getRequestId();
+
+            // Clean up session
+            session.removeAttribute("selectedShowtimeId");
+            session.removeAttribute("selectedSeats");
+
+            response.sendRedirect(request.getContextPath() + "/booking-result?requestId=" + resultRequestId);
+        }
     }
 
     private void prepareCheckoutSummary(HttpServletRequest request) {

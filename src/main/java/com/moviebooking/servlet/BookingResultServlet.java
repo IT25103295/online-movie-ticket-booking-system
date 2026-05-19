@@ -1,7 +1,9 @@
 package com.moviebooking.servlet;
 
 import com.moviebooking.model.BookingRequest;
+import com.moviebooking.model.Payment;
 import com.moviebooking.service.BookingService;
+import com.moviebooking.service.PaymentService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,6 +22,14 @@ public class BookingResultServlet extends HttpServlet {
         if (bookingRequest == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Booking request not found.");
             return;
+        }
+
+        // Check for payment information
+        String paymentId = request.getParameter("paymentId");
+        if (paymentId != null && !paymentId.trim().isEmpty()) {
+            PaymentService paymentService = new PaymentService(getServletContext());
+            Payment payment = paymentService.getPaymentById(paymentId);
+            request.setAttribute("payment", payment);
         }
 
         request.setAttribute("bookingRequest", bookingRequest);

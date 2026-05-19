@@ -7,11 +7,16 @@ body {
 
 a {
     color: #ff4d4d;
+    text-decoration: none;
 }
 
 a:hover {
     color: #ff7777;
 }
+
+/* =========================
+   NAVBAR
+========================= */
 
 .cine-navbar {
     background: #111;
@@ -42,6 +47,10 @@ a:hover {
     filter: invert(1);
 }
 
+/* =========================
+   BUTTONS
+========================= */
+
 .btn-danger {
     background: #e50914;
     border-color: #e50914;
@@ -52,7 +61,10 @@ a:hover {
     border-color: #b80710;
 }
 
-/* Auth Pages */
+/* =========================
+   AUTH PAGES
+========================= */
+
 .auth-page {
     align-items: center;
     display: flex;
@@ -86,17 +98,20 @@ a:hover {
     text-transform: uppercase;
 }
 
-.auth-card .form-label {
+.auth-card .form-label,
+.checkout-form .form-label {
     color: #f1f1f1;
 }
 
-.auth-card .form-control {
+.auth-card .form-control,
+.checkout-form .form-control {
     background: #0d0d0d;
     border: 1px solid #3a3a3a;
     color: #fff;
 }
 
-.auth-card .form-control:focus {
+.auth-card .form-control:focus,
+.checkout-form .form-control:focus {
     background: #0d0d0d;
     border-color: #e50914;
     box-shadow: 0 0 0 0.2rem rgba(229, 9, 20, 0.18);
@@ -119,16 +134,27 @@ a:hover {
     text-align: center;
 }
 
-/* Movie Hero & Details */
-.movie-hero {
+/* =========================
+   HERO SECTIONS
+========================= */
+
+.movie-hero,
+.booking-hero {
     background:
-            linear-gradient(90deg, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.5)),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.55)),
             url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80");
     background-position: center;
     background-size: cover;
     border-bottom: 1px solid #2b2b2b;
+}
+
+.movie-hero {
     min-height: 430px;
     padding: 110px 0 80px;
+}
+
+.booking-hero {
+    padding: 86px 0;
 }
 
 .movie-hero-content {
@@ -146,9 +172,17 @@ a:hover {
 }
 
 .movie-hero h1,
-.details-copy h1 {
+.details-copy h1,
+.booking-hero h1,
+.seat-panel h1,
+.checkout-card h1,
+.result-card h1,
+.admin-queue-wrap h1,
+.history-wrap h1,
+.ticket-card h1,
+.admin-heading h1 {
     color: #fff;
-    font-size: clamp(2.2rem, 6vw, 4.6rem);
+    font-size: clamp(2rem, 5vw, 4.6rem);
     font-weight: 800;
     line-height: 1;
     margin-bottom: 18px;
@@ -156,13 +190,37 @@ a:hover {
 
 .movie-hero p,
 .details-copy p,
-.showtime-placeholder p {
+.showtime-placeholder p,
+.booking-hero p,
+.empty-panel p,
+.result-card p,
+.summary-panel p,
+.showtime-card p,
+.muted-copy,
+.booking-card p {
     color: #d8d8d8;
     font-size: 1.05rem;
 }
 
-.movie-section {
-    padding: 56px 12px 72px;
+/* =========================
+   MOVIE SECTION
+========================= */
+
+.movie-section,
+.showtime-section,
+.seat-page,
+.booking-page,
+.booking-history-page,
+.ticket-page,
+.admin-page {
+    padding: 48px 12px 72px;
+}
+
+.booking-page,
+.booking-history-page,
+.ticket-page,
+.admin-page {
+    min-height: calc(100vh - 58px);
 }
 
 .section-toolbar {
@@ -174,12 +232,24 @@ a:hover {
 }
 
 .section-toolbar h2,
-.showtime-placeholder h2 {
+.showtime-placeholder h2,
+.section-heading h2,
+.summary-panel h2,
+.empty-panel h2,
+.queue-panel h2 {
     color: #fff;
     font-size: 2rem;
     font-weight: 700;
     margin: 0;
 }
+
+.section-heading {
+    margin-bottom: 26px;
+}
+
+/* =========================
+   SORT DROPDOWN
+========================= */
 
 .sort-form {
     min-width: 210px;
@@ -196,13 +266,22 @@ a:hover {
     color: #fff;
 }
 
-/* Movie Cards */
+/* =========================
+   MOVIE CARDS
+========================= */
+
 .movie-card {
     background: #151515;
     border: 1px solid #333;
     border-radius: 8px;
     height: 100%;
     overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.movie-card:hover {
+    border-color: #e50914;
+    transform: translateY(-4px);
 }
 
 .movie-poster {
@@ -251,7 +330,10 @@ a:hover {
     margin-top: 16px;
 }
 
-/* Movie Details */
+/* =========================
+   MOVIE DETAILS PAGE
+========================= */
+
 .details-hero {
     background-position: center;
     background-size: cover;
@@ -292,6 +374,10 @@ a:hover {
     padding: 10px 14px;
 }
 
+/* =========================
+   SHOWTIME & PANELS
+========================= */
+
 .showtime-placeholder {
     background: #151515;
     border: 1px solid #333;
@@ -301,61 +387,10 @@ a:hover {
     padding: 28px;
 }
 
-/* Booking Page - Seat Selection */
-.booking-page {
-    background: #080808;
-    min-height: calc(100vh - 58px);
-}
-
-.booking-hero {
-    background:
-            linear-gradient(90deg, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.55)),
-            url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80");
-    background-position: center;
-    background-size: cover;
-    border-bottom: 1px solid #2b2b2b;
-    padding: 86px 0;
-}
-
-.booking-hero h1,
-.seat-panel h1 {
-    color: #fff;
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 16px;
-}
-
-.booking-hero p {
-    color: #d8d8d8;
-    font-size: 1.05rem;
-}
-
-.showtime-section,
-.seat-page {
-    padding: 48px 12px 72px;
-}
-
-.section-heading {
-    margin-bottom: 26px;
-}
-
-.section-heading h2 {
-    color: #fff;
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-.showtime-card,
-.empty-panel,
-.seat-panel,
-.summary-panel {
+.showtime-card {
     background: #151515;
     border: 1px solid #333;
     border-radius: 8px;
-}
-
-.showtime-card {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -377,15 +412,9 @@ a:hover {
     margin: 10px 0 6px;
 }
 
-.showtime-card p,
-.empty-panel,
-.summary-panel p {
-    color: #d8d8d8;
-}
-
-.empty-panel {
-    padding: 24px;
-}
+/* =========================
+   BOOKING STEPS
+========================= */
 
 .booking-steps {
     display: grid;
@@ -410,7 +439,14 @@ a:hover {
     color: #fff;
 }
 
+/* =========================
+   SEAT SELECTION
+========================= */
+
 .seat-panel {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 8px;
     padding: 28px;
 }
 
@@ -480,6 +516,10 @@ a:hover {
     color: #fff;
 }
 
+/* =========================
+   SEAT LEGEND
+========================= */
+
 .seat-legend {
     display: flex;
     flex-wrap: wrap;
@@ -522,48 +562,21 @@ a:hover {
     border-color: #666;
 }
 
+/* =========================
+   SUMMARY / CHECKOUT
+========================= */
+
 .summary-panel {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 8px;
     margin: 26px auto 0;
     max-width: 420px;
     padding: 22px;
 }
 
 .summary-panel h2 {
-    color: #fff;
     font-size: 1.35rem;
-}
-
-/* Checkout, Result & Admin Queue Pages */
-.booking-page {
-    min-height: calc(100vh - 58px);
-    padding: 48px 0 72px;
-}
-
-.checkout-wrap,
-.result-wrap,
-.admin-queue-wrap {
-    max-width: 980px;
-}
-
-.checkout-card,
-.result-card,
-.queue-panel,
-.empty-panel {
-    background: #151515;
-    border: 1px solid #333;
-    border-radius: 8px;
-    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
-    padding: 28px;
-}
-
-.checkout-card h1,
-.result-card h1,
-.admin-queue-wrap h1 {
-    color: #fff;
-    font-size: clamp(2rem, 5vw, 3.4rem);
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 22px;
 }
 
 .summary-grid,
@@ -600,23 +613,6 @@ a:hover {
     border-color: #e50914;
 }
 
-.checkout-form .form-label {
-    color: #f1f1f1;
-}
-
-.checkout-form .form-control {
-    background: #0d0d0d;
-    border: 1px solid #3a3a3a;
-    color: #fff;
-}
-
-.checkout-form .form-control:focus {
-    background: #0d0d0d;
-    border-color: #e50914;
-    box-shadow: 0 0 0 0.2rem rgba(229, 9, 20, 0.18);
-    color: #fff;
-}
-
 .checkout-actions {
     display: flex;
     flex-wrap: wrap;
@@ -625,16 +621,41 @@ a:hover {
     margin-top: 24px;
 }
 
-.empty-panel h2,
-.queue-panel h2 {
-    color: #fff;
-    font-size: 1.35rem;
+/* =========================
+   CHECKOUT & RESULT CARDS
+========================= */
+
+.checkout-card,
+.result-card,
+.queue-panel,
+.empty-panel,
+.booking-card,
+.ticket-card,
+.stat-card,
+.admin-panel {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    padding: 28px;
 }
 
-.empty-panel p,
-.result-card p {
-    color: #d8d8d8;
+.checkout-wrap,
+.result-wrap,
+.admin-queue-wrap,
+.history-wrap,
+.ticket-wrap,
+.admin-shell {
+    max-width: 1180px;
 }
+
+.empty-panel {
+    padding: 24px;
+}
+
+/* =========================
+   RESULT STATES
+========================= */
 
 .result-card.confirmed {
     border-color: #198754;
@@ -644,51 +665,14 @@ a:hover {
     border-color: #e50914;
 }
 
-.queue-panel {
-    margin-top: 24px;
-}
-
-/* Booking History & Ticket Pages */
-.booking-history-page,
-.ticket-page {
-    min-height: calc(100vh - 58px);
-    padding: 48px 0 72px;
-}
-
-.history-wrap,
-.ticket-wrap {
-    max-width: 980px;
-}
-
-.history-wrap h1,
-.ticket-card h1 {
-    color: #fff;
-    font-size: clamp(2rem, 5vw, 3.6rem);
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 16px;
-}
-
-.muted-copy,
-.booking-card p,
-.empty-panel p {
-    color: #d8d8d8;
-}
+/* =========================
+   BOOKING HISTORY
+========================= */
 
 .booking-list {
     display: grid;
     gap: 18px;
     margin-top: 28px;
-}
-
-.booking-card,
-.empty-panel,
-.ticket-card {
-    background: #151515;
-    border: 1px solid #333;
-    border-radius: 8px;
-    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
-    padding: 24px;
 }
 
 .booking-card {
@@ -729,6 +713,10 @@ a:hover {
     color: #fff;
     margin-right: 6px;
 }
+
+/* =========================
+   TICKET PAGE
+========================= */
 
 .ticket-card {
     border-top: 4px solid #e50914;
@@ -773,22 +761,9 @@ a:hover {
     justify-content: flex-end;
 }
 
-/* Admin Page */
-.admin-page {
-    min-height: calc(100vh - 58px);
-    padding: 44px 0 72px;
-}
-
-.admin-shell {
-    max-width: 1180px;
-}
-
-.admin-heading h1 {
-    color: #fff;
-    font-size: clamp(2rem, 5vw, 3.6rem);
-    font-weight: 800;
-    line-height: 1;
-}
+/* =========================
+   ADMIN PAGE
+========================= */
 
 .admin-tabs {
     display: flex;
@@ -818,14 +793,6 @@ a:hover {
     gap: 16px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-bottom: 24px;
-}
-
-.stat-card,
-.admin-panel {
-    background: #151515;
-    border: 1px solid #333;
-    border-radius: 8px;
-    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
 }
 
 .stat-card {
@@ -871,6 +838,56 @@ a:hover {
     justify-self: start;
 }
 
+/* =========================
+   ADMIN QUEUE
+========================= */
+
+.queue-panel {
+    margin-top: 24px;
+}
+
+/* =========================
+   PAYMENT
+========================= */
+
+.payment-card {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    padding: 28px;
+}
+
+.payment-card h1 {
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 4.6rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 18px;
+}
+
+.payment-summary {
+    margin-bottom: 28px;
+}
+
+.payment-form .form-select {
+    background-color: #0d0d0d;
+    border-color: #3a3a3a;
+    color: #fff;
+}
+
+.card-fields {
+    background: #101010;
+    border: 1px solid #303030;
+    border-radius: 8px;
+    margin-top: 16px;
+    padding: 18px;
+}
+
+/* =========================
+   FORM CONTROLS (GLOBAL)
+========================= */
+
 .form-control,
 .form-select {
     background-color: #0d0d0d;
@@ -886,6 +903,10 @@ a:hover {
     color: #fff;
 }
 
+/* =========================
+   TABLE STYLES
+========================= */
+
 .table-dark {
     --bs-table-bg: #111;
     --bs-table-border-color: #333;
@@ -896,78 +917,10 @@ a:hover {
     gap: 8px;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-    .stat-grid,
-    .admin-form {
-        grid-template-columns: 1fr 1fr;
-    }
-}
+/* =========================
+   PRINT STYLES (TICKET)
+========================= */
 
-@media (max-width: 767px) {
-    .section-toolbar,
-    .details-layout {
-        display: block;
-    }
-
-    .sort-form {
-        margin-top: 18px;
-    }
-
-    .details-poster {
-        margin-bottom: 24px;
-        max-width: 230px;
-    }
-
-    .booking-steps {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .seat-panel {
-        padding: 20px;
-    }
-
-    .seat-grid {
-        gap: 7px;
-        grid-template-columns: repeat(8, minmax(28px, 1fr));
-    }
-
-    .seat-option span {
-        font-size: 0.75rem;
-        height: 32px;
-    }
-
-    .summary-grid,
-    .summary-grid.compact,
-    .queue-stats {
-        grid-template-columns: 1fr;
-    }
-
-    .checkout-card,
-    .result-card,
-    .queue-panel,
-    .empty-panel {
-        padding: 20px;
-    }
-
-    .booking-card,
-    .ticket-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .ticket-top {
-        display: block;
-    }
-}
-
-@media (max-width: 640px) {
-    .stat-grid,
-    .admin-form {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Print Styles for Tickets */
 @media print {
     .cine-navbar,
     .ticket-actions,
@@ -990,5 +943,82 @@ a:hover {
     .ticket-card h1,
     .ticket-grid strong {
         color: #000;
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+    .stat-grid,
+    .admin-form {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .section-toolbar,
+    .details-layout {
+        display: block;
+    }
+
+    .sort-form {
+        margin-top: 18px;
+    }
+
+    .details-poster {
+        margin-bottom: 24px;
+        max-width: 230px;
+    }
+
+    .movie-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-steps {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .seat-panel,
+    .checkout-card,
+    .result-card,
+    .queue-panel,
+    .empty-panel,
+    .booking-card,
+    .ticket-card,
+    .stat-card,
+    .admin-panel,
+    .payment-card {
+        padding: 20px;
+    }
+
+    .seat-grid {
+        gap: 7px;
+        grid-template-columns: repeat(8, minmax(28px, 1fr));
+    }
+
+    .seat-option span {
+        font-size: 0.75rem;
+        height: 32px;
+    }
+
+    .summary-grid,
+    .summary-grid.compact,
+    .queue-stats,
+    .booking-card,
+    .ticket-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ticket-top {
+        display: block;
+    }
+}
+
+@media (max-width: 640px) {
+    .stat-grid,
+    .admin-form {
+        grid-template-columns: 1fr;
     }
 }

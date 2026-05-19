@@ -49,7 +49,7 @@
 
                     <div class="checkout-actions">
                         <a class="btn btn-outline-light" href="${pageContext.request.contextPath}/seats?showtimeId=<%= showtimeId %>">Back</a>
-                        <button class="btn btn-danger" type="submit">Confirm Booking</button>
+                        <button class="btn btn-danger" type="submit">Continue to Payment</button>
                     </div>
                 </form>
             <% } %>

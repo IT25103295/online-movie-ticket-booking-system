@@ -17,7 +17,7 @@ public class Showtime {
         this.cinemaHall = cinemaHall;
         this.date = date;
         this.time = time;
-        this.seatMap = null; // Will be set separately if needed
+        this.seatMap = null;
     }
 
     public Showtime(String id, String movieId, String cinemaHall, String date, String time, SeatMap seatMap) {
