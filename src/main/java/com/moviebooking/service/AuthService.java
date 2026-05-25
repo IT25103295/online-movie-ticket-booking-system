@@ -21,6 +21,7 @@ public class AuthService {
     public static final String CURRENT_USER_SESSION_KEY = "currentUser";// Constant key used to store current logged-in user in session
     private static final String USERS_FILE_PATH = "/WEB-INF/classes/data/users.txt";// File path where user data is stored in text file format
     private static final Object USERS_FILE_LOCK = new Object();
+// Lock object used to prevent multiple threads from accessing the users file at the same time
 
     private final ServletContext servletContext;
 
