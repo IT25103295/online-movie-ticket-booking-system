@@ -10,7 +10,7 @@ public class Movie {
     private double price;
     private String posterUrl;
     private String bannerUrl;
-
+    private String ageRating;
 
     public Movie() {
     }
