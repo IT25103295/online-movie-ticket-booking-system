@@ -106,6 +106,6 @@ public class Movie {
     }
 
     public void setAgeRating(String ageRating) {
-        
+      this.ageRating = ageRating;   
     }
 }
