@@ -22,7 +22,7 @@ import java.io.IOException;
         "/admin",
         "/admin/*"
 })
-public class AuthFilter implements Filter {
+public class AuthFilter implements Filter {//authentication filter that acts as a filter which distinguishes between a normal user and admin
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
