@@ -18,7 +18,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class AuthService {
-    public static final String CURRENT_USER_SESSION_KEY = "currentUser";
+    public static final String CURRENT_USER_SESSION_KEY = "currentUser";// Constant key used to store current logged-in user in session
     private static final String USERS_FILE_PATH = "/WEB-INF/classes/data/users.txt";
     private static final Object USERS_FILE_LOCK = new Object();
 
@@ -27,7 +27,7 @@ public class AuthService {
     public AuthService(ServletContext servletContext) {
         this.servletContext = servletContext;
     }
-
+    
     public List<User> loadUsers() throws IOException {
         synchronized (USERS_FILE_LOCK) {
             File usersFile = getUsersFile();
