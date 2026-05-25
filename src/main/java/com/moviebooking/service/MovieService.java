@@ -11,7 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
+import java.util.UUID;
 
 public class MovieService {
     private static final String MOVIES_FILE_PATH = "/WEB-INF/classes/data/movies.txt";
