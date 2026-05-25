@@ -66,7 +66,7 @@ public class AuthService {
             }
         }
     }
-
+     // This method validates user login credentials
     public User validateCredentials(String usernameOrEmail, String password) throws IOException {
         String loginValue = normalize(usernameOrEmail);
         if (loginValue.isEmpty() || password == null) {
