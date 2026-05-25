@@ -22,7 +22,7 @@ public class MovieDetailsServlet extends HttpServlet {
             return;
         }
 
-
+        request.setAttribute("movie", movie);
         request.getRequestDispatcher("/WEB-INF/views/movie-details.jsp").forward(request, response);
     }
 }
