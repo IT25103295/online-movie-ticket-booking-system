@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 // Filter applied to protected pages that require user authentication
-@WebFilter(urlPatterns = {
+@WebFilter(urlPatterns = {//web annotation says apply these filters to these URLs only
         "/showtimes",
         "/seats",
         "/checkout",
