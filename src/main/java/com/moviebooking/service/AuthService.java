@@ -27,7 +27,7 @@ public class AuthService {
     public AuthService(ServletContext servletContext) {
         this.servletContext = servletContext;
     }
-    
+    // Method to load users from text file
     public List<User> loadUsers() throws IOException {
         synchronized (USERS_FILE_LOCK) {
             File usersFile = getUsersFile();
